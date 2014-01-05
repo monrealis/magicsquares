@@ -48,12 +48,11 @@ public class Finder {
 	
 	private boolean isDuplicateExists(int count) {
 		Set<Integer> items = new TreeSet<Integer>();
-		int[] ints = new int[] {i[0][0], i[0][1], i[0][2], i[1][0], i[1][1], i[1][2], i[2][0], i[2][1], i[2][2]};
-		for (int i = 0; i < count; ++i) {
-			if (items.contains(ints[i])) {
+		for (int j = 0; j < count; ++j) {
+			int n = i[j / 3][j % 3];
+			if (!items.add(n)) {
 				return true; 
 			}
-			items.add(ints[i]);
 		}
 		return false;
 	}
