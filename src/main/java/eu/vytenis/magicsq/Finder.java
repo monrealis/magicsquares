@@ -5,6 +5,9 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class Finder {
+	private static final int MIN_INCL = 1;
+	private static final int MAX_EXCL = 10;
+	
 	private int i11;
 	private int i12;
 	private int i13;
@@ -17,7 +20,7 @@ public class Finder {
 	private int count;
 
 	public void find() {
-		for (i11 = 1; i11 < 10; ++i11) {
+		for (i11 = MIN_INCL; i11 < MAX_EXCL; ++i11) {
 			if (isDuplicateExists(1)) continue;
 			for (i12 = 1; i12 < 10; ++i12) {
 				if (isDuplicateExists(2)) continue;
@@ -35,7 +38,6 @@ public class Finder {
 										if (isDuplicateExists(8)) continue;
 										for (i33 = 1; i33 < 10; ++i33) {
 											if (isDuplicateExists(9)) continue;
-											//System.out.println(new int[] {i11, i12, i13, i21, i22, i23, i31, i32, i33});
 											if (isMagicSquare()) {
 												print();
 												++count;
