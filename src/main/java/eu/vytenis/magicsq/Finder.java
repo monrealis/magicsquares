@@ -12,49 +12,49 @@ public class Finder {
 	private int count;
 
 	public void find() {
-		for (i[0][0] = MIN_INCL; i[0][0] < MAX_EXCL; ++i[0][0]) {
-			if (isDuplicateExists(1)) continue;
-			for (i[0][1] = 1; i[0][1] < 10; ++i[0][1]) {
-				if (isDuplicateExists(2)) continue;
-				for (i[0][2] = 1; i[0][2] < 10; ++i[0][2]) {
-					if (isDuplicateExists(3)) continue;
-					for (i[1][0] = 1; i[1][0] < 10; ++i[1][0]) {
-						if (isDuplicateExists(4)) continue;
-						for (i[1][1] = 1; i[1][1] < 10; ++i[1][1]) {
-							if (isDuplicateExists(5)) continue;
-							for (i[1][2] = 1; i[1][2] < 10; ++i[1][2]) {
-								if (isDuplicateExists(6)) continue;
-								for (i[2][0] = 1; i[2][0] < 10; ++i[2][0]) {
-									if (isDuplicateExists(7)) continue;
-									for (i[2][1] = 1; i[2][1] < 10; ++i[2][1]) {
-										if (isDuplicateExists(8)) continue;
-										for (i[2][2] = 1; i[2][2] < 10; ++i[2][2]) {
-											if (isDuplicateExists(9)) continue;
-											if (isMagicSquare()) {
-												print();
-												++count;
-											}											
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
+		find(0);
 		System.out.println(count);
+	}
+	
+	private void find(int numberIndex) {
+		for (i[getRow(numberIndex)][getCol(numberIndex)] = MIN_INCL; i[getRow(numberIndex)][getCol(numberIndex)] < MAX_EXCL; ++i[getRow(numberIndex)][getCol(numberIndex)]) {
+			if (isDuplicateExists(numberIndex + 1)) {
+				continue;
+			}
+			if (numberIndex + 1 < 9) {
+				find(numberIndex + 1);
+			}
+			if (numberIndex + 1 == 9) {
+				checkSquare();
+			}
+		}		
+	}
+
+	private void checkSquare() {
+		if (!isMagicSquare()) {
+			return;
+		}
+		print();
+		++count;
 	}
 	
 	private boolean isDuplicateExists(int count) {
 		Set<Integer> items = new TreeSet<Integer>();
 		for (int j = 0; j < count; ++j) {
-			int n = i[j / 3][j % 3];
+			int n = i[getRow(j)][getCol(j)];
 			if (!items.add(n)) {
 				return true; 
 			}
 		}
 		return false;
+	}
+
+	private int getRow(int j) {
+		return j / 3;
+	}
+	
+	private int getCol(int j) {
+		return j % 3;
 	}
 	
 	private boolean isMagicSquare() {
