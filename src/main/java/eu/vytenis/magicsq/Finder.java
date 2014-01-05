@@ -8,35 +8,27 @@ public class Finder {
 	private static final int MIN_INCL = 1;
 	private static final int MAX_EXCL = 10;
 	
-	private int i11;
-	private int i12;
-	private int i13;
-	private int i21;
-	private int i22;
-	private int i23;
-	private int i31;
-	private int i32;
-	private int i33;	
+	private int i[][] = new int[3][3];
 	private int count;
 
 	public void find() {
-		for (i11 = MIN_INCL; i11 < MAX_EXCL; ++i11) {
+		for (i[0][0] = MIN_INCL; i[0][0] < MAX_EXCL; ++i[0][0]) {
 			if (isDuplicateExists(1)) continue;
-			for (i12 = 1; i12 < 10; ++i12) {
+			for (i[0][1] = 1; i[0][1] < 10; ++i[0][1]) {
 				if (isDuplicateExists(2)) continue;
-				for (i13 = 1; i13 < 10; ++i13) {
+				for (i[0][2] = 1; i[0][2] < 10; ++i[0][2]) {
 					if (isDuplicateExists(3)) continue;
-					for (i21 = 1; i21 < 10; ++i21) {
+					for (i[1][0] = 1; i[1][0] < 10; ++i[1][0]) {
 						if (isDuplicateExists(4)) continue;
-						for (i22 = 1; i22 < 10; ++i22) {
+						for (i[1][1] = 1; i[1][1] < 10; ++i[1][1]) {
 							if (isDuplicateExists(5)) continue;
-							for (i23 = 1; i23 < 10; ++i23) {
+							for (i[1][2] = 1; i[1][2] < 10; ++i[1][2]) {
 								if (isDuplicateExists(6)) continue;
-								for (i31 = 1; i31 < 10; ++i31) {
+								for (i[2][0] = 1; i[2][0] < 10; ++i[2][0]) {
 									if (isDuplicateExists(7)) continue;
-									for (i32 = 1; i32 < 10; ++i32) {
+									for (i[2][1] = 1; i[2][1] < 10; ++i[2][1]) {
 										if (isDuplicateExists(8)) continue;
-										for (i33 = 1; i33 < 10; ++i33) {
+										for (i[2][2] = 1; i[2][2] < 10; ++i[2][2]) {
 											if (isDuplicateExists(9)) continue;
 											if (isMagicSquare()) {
 												print();
@@ -56,7 +48,7 @@ public class Finder {
 	
 	private boolean isDuplicateExists(int count) {
 		Set<Integer> items = new TreeSet<Integer>();
-		int[] ints = new int[] {i11, i12, i13, i21, i22, i23, i31, i32, i33};
+		int[] ints = new int[] {i[0][0], i[0][1], i[0][2], i[1][0], i[1][1], i[1][2], i[2][0], i[2][1], i[2][2]};
 		for (int i = 0; i < count; ++i) {
 			if (items.contains(ints[i])) {
 				return true; 
@@ -68,14 +60,14 @@ public class Finder {
 	
 	private boolean isMagicSquare() {
 		Set<Integer> sums = new TreeSet<Integer>();
-		sums.add(getSum(i11, i12, i13));
-		sums.add(getSum(i21, i22, i23));
-		sums.add(getSum(i31, i32, i33));		
-		sums.add(getSum(i11, i21, i31));
-		sums.add(getSum(i12, i22, i32));
-		sums.add(getSum(i13, i23, i33));		
-		sums.add(getSum(i11, i22, i33));
-		sums.add(getSum(i31, i22, i13));
+		sums.add(getSum(i[0][0], i[0][1], i[0][2]));
+		sums.add(getSum(i[1][0], i[1][1], i[1][2]));
+		sums.add(getSum(i[2][0], i[2][1], i[2][2]));		
+		sums.add(getSum(i[0][0], i[1][0], i[2][0]));
+		sums.add(getSum(i[0][1], i[1][1], i[2][1]));
+		sums.add(getSum(i[0][2], i[1][2], i[2][2]));		
+		sums.add(getSum(i[0][0], i[1][1], i[2][2]));
+		sums.add(getSum(i[0][2], i[1][1], i[2][0]));
 		return sums.size() == 1;
 	}
 	
@@ -88,9 +80,9 @@ public class Finder {
 	}
 	
 	public void print() {
-		System.out.println(Arrays.asList(i11, i12, i13));
-		System.out.println(Arrays.asList(i21, i22, i23));
-		System.out.println(Arrays.asList(i31, i32, i33));
+		System.out.println(Arrays.asList(i[0][0], i[0][1], i[0][2]));
+		System.out.println(Arrays.asList(i[1][0], i[1][1], i[1][2]));
+		System.out.println(Arrays.asList(i[2][0], i[2][1], i[2][2]));
 		System.out.println();
 	}
 	
